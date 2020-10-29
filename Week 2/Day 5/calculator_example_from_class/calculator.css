@@ -1,0 +1,121 @@
+
+.container{
+	display: grid;
+	grid-template-areas:
+
+	"display display display display"
+	"one two three remove"
+	"four five six back"
+	"seven eight nine cero"
+	"plus minus mult divi"
+	"equal equal equal equal";
+
+	grid-gap: 5px;
+	height: 60vh;
+	width: 50%;
+	margin:auto;
+	margin-top: 100px;
+}
+
+.display{
+	padding-left: 30px;
+	padding-top: 25px;
+	grid-area: display;
+	font-family: “Times New Roman”, Times, serif;
+	font-style: cursive;
+	font-size: 70px;
+	background-color: lightgrey;
+	border: 2px solid black;
+}
+
+.one{
+	grid-area: one;
+}
+
+.two{
+	grid-area: two;
+}
+
+.three{
+	grid-area: three;
+}
+
+.four{
+	grid-area: four;
+}
+
+.five{
+	grid-area: five;
+}
+
+.six{
+	grid-area: six;
+}
+
+.seven{
+	grid-area: seven;
+}
+
+.eight{
+	grid-area: eight;
+}
+
+.nine{
+	grid-area: nine;
+}
+
+.cero{
+	grid-area: cero;
+}
+
+.plus{
+	grid-area: plus;
+}
+
+.minus{
+	grid-area: minus;
+}
+
+.mult{
+	grid-area: mult;
+}
+
+.divi{
+	grid-area: divi;
+}
+
+.remove{
+	grid-area: remove;
+}
+
+.back{
+	grid-area: back;
+}
+
+.equal{
+	grid-area: equal;
+}
+
+.number{
+	font-size: 40px;
+	background-color: teal;
+}
+
+.symbol{
+	font-size: 50px;
+	background-color: orange;
+}
+
+.remove{
+	font-size: 40px;
+	background-color: orange;
+}
+
+.back{
+	font-size: 40px;
+	background-color: orange;
+}
+.equal{
+	font-size: 50px;
+	background-color: lightblue;
+}

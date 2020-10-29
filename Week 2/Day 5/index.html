@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>My Calculator</title>
+    <link rel="stylesheet" href="calculator.css" type="text/css">
+    <style>
+        /* button {
+            width: 70px;
+            height: 70px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="display">0</div>
+    <div class="container">
+        <button class="button button-digit one" type="button" name="button" onclick="my_f(1);">1</button>
+        <button class="button button-digit two" type="button" name="button" onclick="my_f(2);">2</button>
+        <button class="button button-digit three" type="button" name="button" onclick="my_f(3);">3</button>
+        <button class="button button-clear clear" type="button" name="button" onclick="remove();">C</button>
+        <br>
+        <button class="button button-digit four" type="button" name="button" onclick="my_f(4);">4</button>
+        <button class="button button-digit five" type="button" name="button" onclick="my_f(5);">5</button>
+        <button class="button button-digit six" type="button" name="button" onclick="my_f(6);">6</button>
+        <button class="button button-reset reset" type="button" name="button" onclick="reset();">RESET</button>
+        <br>
+        <button class="button button-digit seven" type="button" name="button" onclick="my_f(7);">7</button>
+        <button class="button button-digit eight" type="button" name="button" onclick="my_f(8);">8</button>
+        <button class="button button-digit nine" type="button" name="button" onclick="my_f(9);">9</button>
+        <button class="button button-digit zer" type="button" name="button" onclick="my_f(0);">0</button>
+
+        <br>
+        <button class="button button-symbol plus" type="button" name="button" onclick="my_f('+');">+</button>
+        <button class="button button-symbol minus" type="button" name="button" onclick="my_f('-');">-</button>
+        <button class="button button-symbol multi" type="button" name="button" onclick="my_f('*');">*</button>
+        <button class="button button-symbol divide" type="button" name="button" onclick="my_f('/');">/</button>
+        <br>
+        <button class="button button-equal equal" type="button" name="button" onclick="my_f('=');">=</button>
+    </div>
+
+    <script src="calc.js" charset="utf-8"></script>
+</body>
+
+</html>
