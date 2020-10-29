@@ -1,0 +1,84 @@
+body {
+    background: radial-gradient(circle, rgba(0, 135, 225, 0.4) 0%, rgba(2, 99, 102, 0.4) 35%, rgba(45, 221, 198, 0.4)100%);
+}
+
+nav ul li {
+    display: inline;
+}
+
+.container {
+    background: radial-gradient(circle, rgb(0, 135, 225) 0%, rgb(2, 99, 102) 35%, rgb(45, 221, 198)100%);
+    max-width: 800px;
+    width: 80%;
+    margin: auto;
+}
+
+.topbar {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border: solid rgba(0, 80, 94, 0.4) 3px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+img {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+}
+
+.top-header-box {
+    border: solid rgba(0, 80, 94, 0.4) 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 3px;
+}
+
+#main-title-header1 {
+    text-align: center;
+    font-size: 40px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#first-text-box {
+    padding: 10px;
+}
+
+.header-box {
+    border: solid rgba(0, 80, 94, 0.4) 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.fact-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.fact {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 50%;
+}
+
+.nav-link {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.fact-header {
+    border: solid rgba(0, 80, 94, 0.4) 3px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 3px;
+}
+
+#footer {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+}

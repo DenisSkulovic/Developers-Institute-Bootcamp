@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
+
+  <!--   <style>
+      button {
+        width:70px;
+        height:70px;
+      }
+    </style> -->
+  </head>
+  <body>
+  	<!-- display -->
+<div class=container>
+  	<div id="display" class="display">0</div>
+  	<!-- numbers -->
+    <button class="number one" type="button" name="button" onclick="my_f(1);">1</button>
+
+    <button class="number two" type="button" name="button" onclick="my_f(2);">2</button>
+
+    <button class="number three" type="button" name="button" onclick="my_f(3);">3</button>
+    <br>
+    <button class="number four" type="button" name="button" onclick="my_f(4);">4</button>
+
+    <button class="number five" type="button" name="button" onclick="my_f(5);">5</button>
+
+    <button class="number six" type="button" name="button" onclick="my_f(6);">6</button>
+    <br>
+
+    <button class="number seven" type="button" name="button" onclick="my_f(7);">7</button>
+
+    <button class="number eight" type="button" name="button" onclick="my_f(8);">8</button>
+
+    <button class="number nine" type="button" name="button" onclick="my_f(9);">9</button>
+
+    <button class="number cero" type="button" name="button" onclick="my_f(0);">0</button>
+    <br>
+  <!--   symbols + - / * -->
+    <button class="symbol plus" type="button" name="button" onclick="my_f('+');">+</button>
+
+    <button class="symbol minus" type="button" name="button" onclick="my_f('-');">-</button>
+
+    <button class="symbol mult" type="button" name="button" onclick="my_f('*');">*</button>
+
+    <button class="symbol divi" type="button" name="button" onclick="my_f('/');">/</button>
+   <!--  = button Results -->
+
+    <button class="equal" type="button" name="button" onclick="result();">=</button>
+
+    <button class="back" type="button" name="button" onclick="cero();">C</button>
+
+     <button class="remove" type="button" name="button" onclick="remove();"> < </button>
+</div>
+    
+
+
+<script src="calculator.js"></script>
+</body>
+</html>
