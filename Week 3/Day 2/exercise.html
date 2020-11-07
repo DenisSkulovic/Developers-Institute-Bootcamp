@@ -1,0 +1,45 @@
+<html>
+
+<body>
+
+    <table id="sampleTable" border="1">
+        <tr>
+            <td>Row1 cell1</td>
+            <td>Row1 cell2</td>
+        </tr>
+        <tr>
+            <td>Row2 cell1</td>
+            <td>Row2 cell2</td>
+        </tr>
+    </table>
+
+    <input type="button" onclick="insert_Row()" value="Insert row">
+
+    <script>
+        function insert_Row() {
+            // get the last row number
+            let sampleTable = document.getElementById("sampleTable");
+            let tbody = sampleTable.getElementsByTagName("tbody")[0];
+            let all_tr = tbody.getElementsByTagName("tr");
+            let last_tr = all_tr[all_tr.length - 1];
+            let td_cell = last_tr.getElementsByTagName("td")[0];
+            let td_cell_text = td_cell.innerText;
+            let reg = /(\d)/
+            let nums = td_cell_text.match(reg);
+            let num = parseInt(nums[0]) + 1;
+
+            // create and append children
+            let new_row = document.createElement("tr");
+            let new_cell1 = document.createElement("td");
+            let new_cell2 = document.createElement("td");
+            new_cell1.innerText = "Row" + num + " cell1";
+            new_cell2.innerText = "Row" + num + " cell2";
+            new_row.appendChild(new_cell1);
+            new_row.appendChild(new_cell2);
+            console.log(document.getElementsByTagName("tbody")[0]);
+            document.getElementsByTagName("tbody")[0].appendChild(new_row);
+        }
+    </script>
+</body>
+
+</html>

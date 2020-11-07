@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+        }
+        
+        #animate {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p><button id="button">Click Me</button></p>
+    <div id="container">
+        <div id="animate"></div>
+    </div>
+
+    <script>
+        let button = document.getElementById("button");
+        button.addEventListener("click", myMove)
+
+        function myMove() {
+            let reg = /(\d+)/;
+            // getting the widths of the boxes
+            let red_box = document.getElementById("animate");
+            let red_box_left = red_box.style.left;
+            red_box_left = red_box_left.match(reg);
+            let red_box_w = red_box.offsetWidth;
+
+            let yellow_box = document.getElementById("container");
+            let yellow_box_w = yellow_box.offsetWidth;
+
+            let current_left = 0;
+            let timer = setInterval(
+                function() {
+                    current_left++
+                    red_box.style.left = current_left + 'px';
+                    console.log("yellow_box_w", yellow_box_w)
+                    console.log("red_box.style.left + red_box_w", red_box.style.left + red_box_w);
+                    if (current_left + red_box_w >= yellow_box_w) {
+                        clearInterval(timer);
+                    }
+                }, 10)
+        }
+    </script>
+</body>
+
+</html>

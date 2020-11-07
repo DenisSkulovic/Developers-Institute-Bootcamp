@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .letter {
+            background-color: yellow;
+            border: 1px solid black;
+            margin: 10px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            padding: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="letter">A</div>
+        <div class="letter">B</div>
+        <div class="letter">C</div>
+        <div class="letter">D</div>
+        <div class="letter">E</div>
+        <div class="letter">F</div>
+        <div class="letter">G</div>
+        <div class="letter">H</div>
+        <div class="letter">I</div>
+        <div class="letter">J</div>
+        <div class="letter">K</div>
+        <div class="letter">L</div>
+        <div class="letter">M</div>
+        <div class="letter">N</div>
+        <div class="letter">O</div>
+        <div class="letter">P</div>
+        <div class="letter">Q</div>
+        <div class="letter">R</div>
+        <div class="letter">S</div>
+        <div class="letter">T</div>
+        <div class="letter">U</div>
+        <div class="letter">V</div>
+        <div class="letter">W</div>
+        <div class="letter">X</div>
+        <div class="letter">Y</div>
+        <div class="letter">Z</div>
+    </section>
+
+    <script>
+        let divs = document.getElementsByTagName("div");
+        for (letter of divs) {
+            letter.setAttribute("id", letter.innerText);
+            letter.setAttribute("draggable", "true");
+            letter.setAttribute("ondragstart", "dragStart(event)");
+            letter.setAttribute("ondragend", "dragStop(event)")
+        }
+
+        function dragStart(event) {
+            event.target.style.backgroundColor = "pink";
+
+        }
+
+        function dragStop(event) {
+
+            event.target.style.backgroundColor = "yellow";
+            let _x = event.clientX;
+            let _y = event.clientY;
+            event.target.style.left = _x + "px";
+            event.target.style.top = _y + "px";
+            event.target.style.position = "absolute";
+        }
+    </script>
+</body>
+
+</html>

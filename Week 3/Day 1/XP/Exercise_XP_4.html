@@ -1,0 +1,34 @@
+<html>
+
+<body>
+    <div>Users:</div>
+    <ul>
+        <li>John</li>
+        <li>Pete</li>
+    </ul>
+
+    <script>
+        // 1
+        let div = document.getElementsByTagName("div")[0];
+        div.style.backgroundColor = 'lightBlue';
+        div.style.padding = "3em";
+
+        // 2
+        let ul = document.getElementsByTagName("ul")[0];
+        let john_li = ul.getElementsByTagName("li")[0];
+        let user1 = john_li.innerText;
+        ul.removeChild(john_li);
+        let pete_li = ul.getElementsByTagName("li")[0];
+        let user2 = pete_li.innerText;
+        pete_li.style.border = "solid 5px black";
+
+        let bod = document.getElementsByTagName("body")[0];
+        bod.style.fontSize = "5px";
+
+        if (div.style.backgroundColor == 'lightblue') {
+            alert("Hello " + user1 + " and " + user2);
+        }
+    </script>
+</body>
+
+</html>

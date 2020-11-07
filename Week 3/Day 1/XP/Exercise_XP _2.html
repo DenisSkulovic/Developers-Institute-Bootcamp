@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="container">Users:</div>
+    <ul class="list">
+        <li>John</li>
+        <li>Pete</li>
+    </ul>
+    <ul class="list">
+        <li>David</li>
+        <li>Sarah</li>
+        <li>Dan</li>
+    </ul>
+    <script>
+        // Exercise 2: Users
+        // 1
+        let all_ul = document.querySelectorAll(".list");
+        let first_ul = all_ul[0];
+        let last_ul = all_ul[1];
+        let first_ul_li_elements = first_ul.getElementsByTagName("li");
+        let last_ul_li_elements = last_ul.getElementsByTagName("li");
+        first_ul_li_elements[1].innerText = "Richard";
+        console.log(first_ul_li_elements[1].innerText);
+
+        // 2
+        let ul_list_2 = document.querySelectorAll("ul");
+        let li_list = [];
+        for (ul of ul_list_2) {
+            let li = ul.querySelector("li");
+            li_list = li_list.concat(li);
+        }
+        console.log(li_list);
+
+        for (li of li_list) {
+            li.innerText = "Denis";
+        }
+
+        // 3
+        let ul_list_3 = document.querySelectorAll("ul");
+        for (ul of ul_list_3) {
+            let new_li = document.createElement("li");
+            new_li.innerText = "Hey students";
+            ul.appendChild(new_li);
+        }
+
+        // 4
+        let second_ul = document.querySelectorAll("ul")[1];
+        let second_ul_second_li = second_ul.querySelectorAll("li")[1];
+        second_ul.removeChild(second_ul_second_li);
+
+        // 5
+        let ul_all = document.querySelectorAll("ul");
+        first_ul = ul_all[0];
+        last_ul = ul_all[1];
+        first_ul.setAttribute("class", "student_list");
+        last_ul.setAttribute("class", "student_list");
+
+        first_ul.setAttribute("class", first_ul.class + " university attendance");
+    </script>
+</body>
+
+</html>

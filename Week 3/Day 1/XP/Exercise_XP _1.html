@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="navBar">
+        <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">My Friends</a></li>
+            <li><a href="#">Messenger</a></li>
+            <li><a href="#">My Pics</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Exercise 1: Change The Navbar
+        // 1
+        let id_elem = document.getElementsByTagName("div")[0];
+        id_elem.id = "socialNetworkNavigation";
+
+        // 2
+        let new_li = document.createElement("li");
+        new_li.innerHTML = "<a href='#'>Logout</a>";
+        document.querySelector("ul").appendChild(new_li);
+
+        // 3
+        let ul_elem = document.querySelector("ul");
+        let first_li = ul_elem.firstChild;
+        let last_li = ul_elem.lastChild;
+        console.log(first_li.childNodes[0].nodeValue);
+        console.log(last_li.childNodes[0].nodeValue);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<html>
+
+<body>
+    <select id="select1"> 
+            <option value="apple">Middle School</option>
+            <option value="pear">University</option>
+            <option value="banana">College</option>
+        </select>
+
+    <script>
+        let select = document.getElementById("select1");
+        console.log(select.options[1].value);
+
+        let work = document.createElement("option");
+        work.value = "work";
+        work.innerText = "Work";
+
+        let school = document.createElement("option");
+        school.value = "school";
+        school.innerText = "Primary School";
+
+        select.appendChild(work);
+        select.insertBefore(school, select.firstChild);
+
+        select[3].selected = true;
+
+        let selected_index = select.selectedIndex;
+        alert(select[selected_index]);
+    </script>
+</body>
+
+</html>

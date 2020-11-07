@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <article>
+        <h1> Some Facts </h1>
+        <h2> The Chocolate </h2>
+        <p> Chocolate is made from tropical Theobroma cacao tree seeds. Its earliest use dates back to the Olmec civilization in Mesoamerica.</p>
+        <p> After the European discovery of the Americas, chocolate became very popular in the wider world, and its demand exploded. </p>
+        <p> Chocolate has since become a popular food product that millions enjoy every day, thanks to its unique, rich, and sweet taste.</p>
+        <p> But what effect does eating chocolate have on our health?</p>
+    </article>
+    <form>
+        <label>What is your name?</label><input type="text" name="userName">
+        <label>What did you think of the article?</label><input type="text" name="questionToUser">
+    </form>
+
+    <script>
+        let paragraphs = document.getElementsByTagName("p");
+        for (para of paragraphs) {
+            para.setAttribute("class", "para_article");
+        }
+
+        let last_p = paragraphs[paragraphs.length - 1];
+        document.getElementsByTagName("article")[0].removeChild(last_p);
+
+        let h2 = document.getElementsByTagName("h2")[0]
+
+        function rem_h2() {
+            document.getElementsByTagName("article")[0].removeChild(h2);
+        }
+        h2.addEventListener("click", rem_h2);
+
+        let h1 = document.querySelector("h1");
+        console.log(h1);
+
+        function h1_font() {
+            let new_size = Math.floor(Math.random() * 100);
+            h1.style.fontSize = new_size + "px";
+        }
+        h1.addEventListener("click", h1_font);
+
+        function hide_h1() {
+
+        }
+    </script>
+</body>
+
+</html>

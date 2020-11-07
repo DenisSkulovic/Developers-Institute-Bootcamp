@@ -1,0 +1,21 @@
+<html>
+
+<body>
+    <form id="form1" onsubmit="getvalue()">
+        <label>First name: </label><input type="text" name="fname" value="David"><br>
+        <label>Last name: </label><input type="text" name="lname" value="BenGurion"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        let forms = document.forms[0];
+        let elements = forms.elements;
+        console.log(elements);
+        let first_elem = elements[0];
+        let last_elem = elements[elements.length - 2];
+        console.log(first_elem.value);
+        console.log(last_elem.value);
+    </script>
+</body>
+
+</html>

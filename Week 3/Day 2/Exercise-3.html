@@ -1,0 +1,45 @@
+<html>
+
+<body>
+
+    <style>
+        div {
+            border: 2px solid blue
+        }
+        
+        button {
+            border: 2px solid red
+        }
+    </style>
+
+    <section id="section">
+        <div>
+            <button id="jsstyle">Style</button>
+        </div>
+    </section>
+    <script>
+        let btn = document.querySelector("button");
+        let div = document.querySelector("div");
+        let body = document.querySelector("body");
+
+        function btn_f(e) {
+            btn.style.backgroundColor = "red";
+            e.stopPropagation();
+        }
+
+        function div_f(e) {
+            div.style.backgroundColor = "red";
+        }
+
+        function body_f(e) {
+            body.style.backgroundColor = "red";
+        }
+
+        btn.addEventListener("click", btn_f);
+        div.addEventListener("click", div_f);
+        body.addEventListener("click", body_f);
+    </script>
+
+</body>
+
+</html>
