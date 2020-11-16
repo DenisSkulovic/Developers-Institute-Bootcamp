@@ -26,9 +26,10 @@ class PetDog(Dog):
         self.trained = True
 
     def play(self, *dogs):
-        
-        print(", ".join(dogs) + " play together.")
+        dog_names = [dog.name for dog in dogs]
+        print(", ".join(dog_names) + " play together.")
         for dog in dogs:
+            self.trained = False
             dog.trained = False
     
     def do_a_trick(self):
