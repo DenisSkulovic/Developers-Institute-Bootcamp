@@ -1,41 +1,32 @@
-SELECT * FROM customer;
+UPDATE students
+SET birth_date = '02/11/1998'
+WHERE first_name||' '||last_name in ('Lea Benichou','Marc Benichou');
 
-SELECT first_name||' '||last_name as full_name FROM customer; 
+UPDATE students
+SET last_name = 'Guez'
+WHERE first_name = 'David' AND last_name = 'Grez';
 
-SELECT DISTINCT create_date FROM customer;
+DELETE FROM students WHERE first_name = 'Lea' and last_name = 'Benichou';
 
-SELECT * FROM customer ORDER BY first_name;
+SELECT COUNT(*) FROM students;
 
-SELECT film_id, title, description, release_year, rental_rate
-FROM film
-ORDER BY rental_rate asc;
+SELECT COUNT(*) FROM students WHERE birth_date > '01/01/2000';
 
-SELECT a.address, a.district, a.phone
-FROM address a
-WHERE a.district = 'Texas';
+ALTER TABLE students
+ADD math_grade SMALLINT;
 
-SELECT *
-FROM film
-WHERE film_id = 15
-OR film_id = 150;
+UPDATE students
+SET math_grade = 80 WHERE id = 1;
+UPDATE students
+SET math_grade = 90 WHERE id IN (2, 4);
+UPDATE students
+SET math_grade = 40 WHERE id = 6;
 
-SELECT film_id, title, description, length, rental_rate
-FROM film
-WHERE title LIKE '%ove%';
+SELECT COUNT(*) FROM students WHERE math_grade > 83;
 
-SELECT * FROM film ORDER BY rental_rate ASC LIMIT 10;
-
-SELECT 
-	title, 
-	rental_rate 
-FROM film
-ORDER BY rental_rate
-OFFSET 10
-FETCH FIRST 10 ROWS ONLY;
-
-SELECT p.amount, p.payment_date
-FROM customer c
-LEFT JOIN payment p
-ON c.customer_id = p.customer_id
-ORDER BY c.customer_id;
-
+INSERT INTO students
+	(first_name, last_name, birth_date, math_grade)
+VALUES
+	('Omer', 'Simpson', '1980-10-03', 70);
+	
+SELECT SUM(math_grade) FROM students;
