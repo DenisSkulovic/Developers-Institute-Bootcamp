@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id=vehicle_list>
+    <ul class="list-group">
+        {% for vehicle in vehicles %}
+        <li class="list-group-item"><a href="{% url 'vehicle_id' id=vehicle.id %}">{{vehicle.real_cost}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<a class="btn btn-primary" href="{% url 'mainpage' %}" role="button">Back to Main Page</a>
+{% endblock content %}

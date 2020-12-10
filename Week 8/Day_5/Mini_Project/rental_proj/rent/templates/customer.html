@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id=customer_list>
+    <ul class="list-group">
+        {% for customer in customers %}
+        <li class="list-group-item"><a href="{% url 'customer_id' id=customer.id %}">{{customer}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+<a class="btn btn-primary" href="{% url 'mainpage' %}" role="button">Back to Main Page</a>
+<a class="btn btn-primary" href="{% url 'customer_add' %}" role="button">Add Customer</a>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+    {{rental}}
+</p>
+<p>
+    <a class="btn btn-primary" href="{% url 'mainpage' %}" role="button">Back to Main Page</a>
+</p>
+<p>
+    <a class="btn btn-primary" href="{% url 'rental' %}" role="button">Back to Rental</a>
+</p>
+{% endblock content %}

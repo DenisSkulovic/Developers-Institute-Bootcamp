@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div id=rental_list>
+    <ul class="list-group">
+        {% for rental in rentals %}
+        <li class="list-group-item"><a href="{% url 'rental_id' id=rental.id %}">{{rental}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<a class="btn btn-primary" href="{% url 'mainpage' %}" role="button">Back to Main Page</a>
+<a class="btn btn-primary" href="{% url 'rental_add' %}" role="button">Add Rental</a>
+{% endblock content %}

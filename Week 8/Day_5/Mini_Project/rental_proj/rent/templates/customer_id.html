@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+<p>
+    {{customer.first_name}}
+</p>
+<p>
+    <a class="btn btn-primary" href="{% url 'mainpage' %}" role="button">Back to Main Page</a>
+</p>
+<p>
+    <a class="btn btn-primary" href="{% url 'customer' %}" role="button">Back to Customer</a>
+</p>
+{% endblock content %}

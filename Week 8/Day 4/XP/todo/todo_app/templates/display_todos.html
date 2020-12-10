@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if todos %}
+    {% for todo in todos %}
+        {{todo.title}}
+    {% endfor %}
+{% else %}
+    there are no todos
+{% endif %}
+
+{% endblock content %}

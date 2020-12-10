@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+    {{vehicle}}
+</p>
+<p>
+    <a class="btn btn-primary" href="{% url 'mainpage' %}" role="button">Back to Main Page</a>
+</p>
+<p>
+    <a class="btn btn-primary" href="{% url 'vehicle' %}" role="button">Back to Vehicle</a>
+</p>
+
+{% endblock content %}

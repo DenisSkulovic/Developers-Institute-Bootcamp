@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if todos %}
+    <hr>
+    {% for todo in todos %}
+        <p>{{todo.title}}</p>
+    {% endfor %}
+    <hr>
+{% else %}
+    <hr>
+    <p>There are no todos</p>
+    <hr>
+{% endif %}
+
+<form action="" , method="POST">
+
+    {% csrf_token %}
+    <table>
+        {{todo_form.as_table}}
+    </table>
+    <input type="submit" value="Submit form">
+
+</form>
+
+
+
+
+{% endblock content %}
