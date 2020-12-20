@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Forum - {{ block.super }} 
+{% endblock title %}
+
+{% block content %}
+    <p>This is forum html</p>
+
+    {% if comment_list %}
+    {% for comment in comment_list %}
+        {{comment}}
+    {% endfor %}
+    {% else %}
+        <p>There are no comments to display</p>
+    {% endif %}
+
+    <a href="{% url 'addcomment' %}" class="btn btn-danger" >Add Comment</a>
+    <a href="{% url 'mainpage' %}" class="btn btn-primary" >Back to Mainpage</a>
+{% endblock content %}

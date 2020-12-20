@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>This is the viewcards.html</p>
+    {% if cards %}
+    {% for card in cards %}
+        {{card}}
+    {% endfor %}
+    {% endif %}
+
+    {% if not cards %}
+    <p>There are no cards to display</p>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Trading - {{ block.super }}
+{% endblock title %}
+
+
+{% block content %}
+{% if not request.user.is_anonymous %}
+<div>
+    <div>
+        <a href="{% url 'trading_buy' page %}" class='btn btn-primary'>Buy more cards that you already own</a>
+        <a href="{% url 'trading_sell' page %}" class='btn btn-primary'>Sell cards from your collection</a>
+    </div>
+    {% endif %}
+    <div>
+        <a href="{% url 'trading_buy_all' page %}" class='btn btn-primary'>View all buy requests</a>
+        <a href="{% url 'trading_sell_all' page %}" class='btn btn-primary'>Sell all sell offers</a>
+    </div>
+    <div>
+        <a href="{% url 'mainpage' %}" class='btn btn-danger'>Back to main page</a>
+    </div>
+</div>
+{% endblock content %}

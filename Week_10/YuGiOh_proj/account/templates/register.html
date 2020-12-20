@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Register - {{ block.super }} 
+{% endblock title %}
+
+
+{% block content %}
+<h1>Register</h1>
+{% if form_invalid %}
+<h3>Invalid registry</h3>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+        {{form.as_p}}
+        <!-- Username
+        <input class="form-control" type="text" name="username" />
+        Password
+        <input class="form-control" type="password" name="password1" />
+        Confirm Password
+        <input class="form-control" type="password" name="password2" />
+        Link to Profile Picture
+        <input class="form-control" type="text" name="picture" />
+        Nickname
+        <input class="form-control" type="text" name="nickname" /> -->
+    <button class="btn btn-danger" type="submit">Register</button>
+</form>
+
+{% endblock %}

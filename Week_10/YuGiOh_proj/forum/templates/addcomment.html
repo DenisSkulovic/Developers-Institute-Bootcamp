@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Forum - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<h2>This is add comment html</h2>
+{% if invalid_entry %}
+Invalid entry
+{% endif %}
+<div id="changepassword-wrapper">
+    <div id="changepassword-box">
+        <form method="POST" class="form-signin">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="form-control btn btn-success" type='submit'>Post Comment</button>
+        </form>
+    </div>
+</div>
+
+<a href="{% url 'forum' %}" class="btn btn-primary">Back to Forum</a>
+{% endblock content %}

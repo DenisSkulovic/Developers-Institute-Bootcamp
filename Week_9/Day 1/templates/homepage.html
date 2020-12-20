@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>All the new films</h1>
+    {% if film_list %}
+    {% for film in film_list %}
+        {{film}}
+        <a href="{% url 'addFilm' %}" class="btn btn-danger" >Add Question</a>
+    {% endfor %}
+    {% endif %}
+    <a href="{% url 'home' %}" class="btn btn-primary" >Back to Home</a>
+
+{% endblock content %}
