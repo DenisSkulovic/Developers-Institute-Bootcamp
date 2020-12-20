@@ -9,9 +9,9 @@ Forum - {{ block.super }}
 {% if invalid_entry %}
 Invalid entry
 {% endif %}
-<div id="changepassword-wrapper">
-    <div id="changepassword-box">
-        <form method="POST" class="form-signin">
+<div id="comment-create-wrapper">
+    <div id="comment-create-box">
+        <form method="POST" action="">
             {% csrf_token %}
             {{form.as_p}}
             <button class="form-control btn btn-success" type='submit'>Post Comment</button>

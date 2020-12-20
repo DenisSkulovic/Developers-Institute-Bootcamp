@@ -55,7 +55,10 @@ class Card(models.Model):
         return f'{self.api_id}: {self.name}'
     def __str__(self):
         return f'{self.api_id}: {self.name}'
-    
+    def get_absolute_url(self):
+        return reverse('card_detail', args=[str(self.id)])
+
+
 class Image(models.Model):
     api_id = models.IntegerField()
     image_url = models.URLField()

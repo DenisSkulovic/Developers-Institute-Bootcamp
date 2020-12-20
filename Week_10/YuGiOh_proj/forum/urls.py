@@ -4,5 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.Forum.as_view(), name='forum'),
-    path('addcomment/', views.CreateComment.as_view(), name='addcomment'),
+    path('comment/create/', views.CommentCreateView.as_view(), name='comment_create'),
+    path('comment/all/', views.CommentListView.as_view(), name='comment_list'),
+    path('comment/<int:pk>', views.CommentDetailView.as_view(), name='comment_detail'),
+    path('comment/<int:pk>/edit/', views.CommentUpdateView.as_view(), name='comment_update'),
 ]
