@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'account.apps.AccountConfig',
     'forum.apps.ForumConfig',
     'trading.apps.TradingConfig',
@@ -138,8 +139,16 @@ LOGOUT_REDIRECT_URL = 'mainpage'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
-LOGIN_REQUIRED_IGNORE_VIEW_NAMES = [
-    
-]
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# password reset emailing
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'dskulovich@gmail.com'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE)TLS = True
+
+

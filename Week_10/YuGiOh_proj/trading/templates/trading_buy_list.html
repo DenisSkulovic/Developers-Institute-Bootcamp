@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Buy Requests - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<h1>Buy Requests</h1>
+<div id="trading-buy-list-top-buttons-wrapper">
+    <div id="trading-buy-list-top-buttons-box">
+        <a href="{% url 'comment_create' %}" class="btn btn-primary">Add Request to Buy</a>
+        <a href="{% url 'trading' %}" class="btn btn-primary">Back to Trading Page</a>
+        <a href="{% url 'mainpage' %}" class="btn btn-primary">Back to Mainpage</a>
+    </div>
+</div>
+<div id="trading-buy-list-wrapper">
+    <div id="trading-buy-list-box">
+        {% for object in object_list %}
+            {% include 'trading_buy_detail.html' with pk=object.pk %}
+            {% if object.user == user %}
+                <p><a href="{% url 'trading_buy_update' object.pk %}">Edit Offer</a></p>
+                <p><a href="{% url 'trading_buy_delete' object.pk %}">Delete Offer</a></p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

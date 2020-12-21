@@ -1,7 +1,13 @@
-from django.shortcuts import render
-from django.views.generic import View, ListView, DetailView, CreateView, UpdateView
+from django.shortcuts import render, reverse
+from django.urls import reverse_lazy
+from django.views.generic import (View, ListView, DetailView, 
+                                  CreateView, UpdateView, DeleteView,
+                                  TemplateView,
+                                  )
 from ygoprodeck import YGOPro
-from mainpage.models import Type, Race, Archetype, Cardset, Image, CardPrice, Attribute, Card
+from mainpage.models import (Type, Race, Archetype, 
+                             Cardset, Image, CardPrice, 
+                             Attribute, Card)
 from account.models import Profile
 from django.core.exceptions import ObjectDoesNotExist
 from mainpage.db_functions import get_api_data, get_or_create, update_db
@@ -9,6 +15,25 @@ from django.contrib.auth.decorators import login_required
 from trading.models import SellOffer, BuyOffer
 from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
+
+
+class Trading(TemplateView):
+    template_name = 'trading.html'
+
+
+
+@method_decorator(login_required, name='get')
+class TradingBuyDeleteView(DeleteView):
+    model = BuyOffer
+    template_name = 'trading_buy_delete.html'
+    success_url = reverse_lazy('trading_buy_list')
+
+@method_decorator(login_required, name='get')
+class TradingSellDeleteView(DeleteView):
+    model = SellOffer
+    template_name = 'trading_sell_delete.html'
+    success_url = reverse_lazy('trading_sell_list')
+
 
 
 
@@ -26,6 +51,9 @@ class TradingSellUpdateView(UpdateView):
     fields = ['card','price']
     # make sure profile field is properly dealt with in views
 
+
+
+
 class TradingBuyDetailView(DetailView):
     model = BuyOffer
     template_name = 'trading_buy_detail.html'
@@ -36,6 +64,9 @@ class TradingSellDetailView(DetailView):
     template_name = 'trading_sell_detail.html'
     fields = '__all__'
 
+
+
+
 class TradingBuyListView(ListView):
     model = BuyOffer
     template_name = 'trading_buy_list.html'
@@ -45,6 +76,9 @@ class TradingSellListView(ListView):
     model = SellOffer
     template_name = 'trading_sell_list.html'
     fields = '__all__'
+    
+    
+    
     
 @method_decorator(login_required, name='get')
 class TradingBuyCreateView(CreateView):
@@ -59,11 +93,6 @@ class TradingSellCreateView(CreateView):
     template_name = 'trading_sell_create.html'
     fields = ['card','price']
     # make sure profile field is properly dealt with in views
-
-class Trading(View):
-    def get(self, request):
-        context = {}
-        return render(request, 'trading.html', context)
 
 
 

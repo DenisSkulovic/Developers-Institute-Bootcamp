@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Buy Offer - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<h2>Create Buy Offer</h2>
+
+<div id="buy-offer-create-wrapper" class="form-wrapper">
+    <div id="buy-offer-create-box" class="form-wrapper">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="form-control btn btn-success" type='submit'>Create Offer</button>
+        </form>
+    </div>
+</div>
+
+<a href="{% url 'trading' %}" class="btn btn-primary">Back to Trading Page</a>
+{% endblock content %}

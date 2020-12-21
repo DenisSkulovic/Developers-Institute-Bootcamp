@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Type(models.Model):
     name = models.CharField(max_length=2550)
@@ -51,6 +52,7 @@ class Card(models.Model):
     card_def = models.IntegerField(null=True, blank=True)
     card_level = models.IntegerField(null=True, blank=True)
     attribute = models.ForeignKey(Attribute, on_delete=models.SET_NULL, null=True, blank=True)
+    image = models.OneToOneField(Image, on_delete=models.CASCADE)
     def __repr__(self):
         return f'{self.api_id}: {self.name}'
     def __str__(self):

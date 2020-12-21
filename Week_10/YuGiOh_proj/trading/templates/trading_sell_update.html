@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update Sell Offer - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<h2>Update Sell Offer</h2>
+
+<div id="sell-offer-update-wrapper">
+    <div id="sell-offer-update-box">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="form-control btn btn-success" type='submit'>Update Offer</button>
+        </form>
+    </div>
+</div>
+
+<a href="{% url 'trading' %}" class="btn btn-primary">Back to Trading Page</a>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Forum - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<h2>Update Comment</h2>
+
+<div id="comment-create-wrapper">
+    <div id="comment-create-box">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="form-control btn btn-success" type='submit'>Post Comment</button>
+        </form>
+    </div>
+</div>
+
+<a href="{% url 'forum' %}" class="btn btn-primary">Back to Forum</a>
+{% endblock content %}

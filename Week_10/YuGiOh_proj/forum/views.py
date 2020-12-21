@@ -1,38 +1,46 @@
 from django.shortcuts import render, redirect
-from .models import Comment
-from .forms import CommentForm
-from django.views.generic import View, ListView, DetailView, CreateView, UpdateView
+from forum.models import Comment
+from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 
+class CommentDeleteView(DeleteView):
+    model = Comment
+    success_url ="comment_list/"
 
 class CommentDetailView(DetailView):
     model = Comment
     template_name = 'comment_detail.html'
-    fields = ['title','text']
-    # deal with the remaining fields
+    fields = ['title','text', 'post_date', 'user']
 
 
 class CommentListView(ListView):
     model = Comment
     template_name = 'comment_list.html'
-    fields = ['title','text']
-    # make sure you deal with the remaining fields
+    fields = ['title','text', 'post_date', 'user']
+
 
 @method_decorator(login_required, name='get')
 class CommentCreateView(CreateView):
     model = Comment
     template_name = 'comment_create.html'
     fields = ['title','text']
-    # deal with remaining fields in views
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+
 
 @method_decorator(login_required, name='get')
 class CommentUpdateView(UpdateView):
     model = Comment
     template_name = 'comment_update.html'
     fields = ['title','text']
-    # deal with remaining fields in views
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 

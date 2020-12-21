@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="card-detail-wrapper">
+    <div id="card-detail-box">
+        <p>{{object.name}}</p>
+        <p>{{object.type}}</p>
+        <p>{{object.desc}}</p>
+        <p>{{object.race}}</p>
+        <p>{{object.archetype}}</p>
+        <p>{{object.cardset}}</p>
+        <p>{{object.card_atk}}</p>
+        <p>{{object.card_def}}</p>
+        <p>{{object.card_level}}</p>
+        <p>{{object.attribute}}</p>
+        <p>{{object.image.image_url}}</p>
+    </div>
+</div>
+{% endblock content %}

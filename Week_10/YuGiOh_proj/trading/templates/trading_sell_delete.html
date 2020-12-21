@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="trading-sell-delete-form-wrapper" class="form-wrapper">
+    <div id="trading-sell-delete-form-box" class="form-box">
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete the selected offer?</p>
+            <input class='btn btn-danger' type="submit" value="Confirm">
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

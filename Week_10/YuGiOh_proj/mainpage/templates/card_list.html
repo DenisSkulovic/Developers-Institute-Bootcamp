@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Cards - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<h1>Comments</h1>
+<div>
+    <a href="{% url 'mainpage' %}" class="btn btn-primary">Back to Mainpage</a>
+</div>
+
+<div id="card-detail-wrapper">
+    <div id="card-detail-box">
+        {% for object in object_list %}
+        {% include 'card_detail.html' with pk=object.pk %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

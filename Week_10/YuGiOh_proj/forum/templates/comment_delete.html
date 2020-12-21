@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="comment-delete-form-wrapper">
+    <div id="comment-delete-form-box">
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete the selected comment?</p>
+            <input class='btn btn-danger' type="submit" value="Confirm">
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
