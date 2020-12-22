@@ -1,0 +1,46 @@
+<div id="card-detail-wrapper">
+    <div id="card-detail-box">
+        {% if object.desc %} 
+        <div class="card_snippet_row">
+            <label class="card-snippet-label">Description</label>
+            <p>Description: {{object.desc}}</p>    
+        </div>
+        {% endif %}
+
+        {% if object.race %} 
+        <div class="card_snippet_row">
+             <label class="card-snippet-label">Race</label>
+             <p>Description: {{object.race}}</p>    
+        </div>  
+        {% endif %}
+
+        {% if object.archetype %} 
+        <div class="card_snippet_row">
+             <label class="card-snippet-label">Archetype</label>
+             <p>Description: {{object.archetype}}</p>    
+        </div>  
+        {% endif %}
+
+        {% if object.cardset %} 
+        <div class="card_snippet_row">
+             <label class="card-snippet-label">Cardset</label>
+             <p>Description: {{object.cardset}}</p>    
+        </div>  
+        {% endif %}
+
+        {% if object.card_atk %} 
+        <div class="card_snippet_row">
+             <label class="card-snippet-label">Attack</label>
+             <p>Description: {{object.card_atk}}</p>    
+        </div>  
+        {% endif %}
+        
+        {% if object.card_def %} 
+        <div class="card_snippet_row">
+             <label class="card-snippet-label">Defence</label>
+             <p>Description: {{object.card_atk}}</p>    
+        </div>  
+        {% endif %}
+
+    </div>
+</div>

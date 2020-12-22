@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd party
     'crispy_forms',
+    # local
     'account.apps.AccountConfig',
     'forum.apps.ForumConfig',
     'trading.apps.TradingConfig',
@@ -115,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jerusalem'
 
 USE_I18N = True
 
@@ -141,14 +143,17 @@ LOGOUT_URL = 'logout'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+AUTH_USER_MODEL = 'account.CustomUser'
 
-# password reset emailing
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'dskulovich@gmail.com'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_PORT = 587
-EMAIL_USE)TLS = True
+# password reset emailing (SMTP via SendGrid will not work with free emails like gmail, so instead password resetting is done via console)
+EMAIL_BACKEND = 'django.core.mail.concole.smtp.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# DEFAULT_FROM_EMAIL = 'dskulovich@gmail.com'
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = 'apikey'
+# EMAIL_HOST_PASSWORD = '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'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 

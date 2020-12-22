@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.forms import AdminPasswordChangeForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('account/', include('django.contrib.auth.urls')),
     path('account/', include('account.urls')),
     path('forum/', include('forum.urls')),

@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Cards - {{ block.super }}
+{% endblock title %}
+
 {% block content %}
+<h1>Comments</h1>
+<div>
+    <a href="{% url 'mainpage' %}" class="btn btn-primary">Back to Mainpage</a>
+</div>
+
 <div id="card-detail-wrapper">
     <div id="card-detail-box">
-        <p>{{object.name}}</p>
-        <p>{{object.type}}</p>
-        <p>{{object.desc}}</p>
-        <p>{{object.race}}</p>
-        <p>{{object.archetype}}</p>
-        <p>{{object.cardset}}</p>
-        <p>{{object.card_atk}}</p>
-        <p>{{object.card_def}}</p>
-        <p>{{object.card_level}}</p>
-        <p>{{object.attribute}}</p>
-        <p>{{object.image.image_url}}</p>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="font-weight-bold"><a href="{% url 'card_detail' object.pk %}">{{object.name}}</a></span> &middot;
+                <span class="text-muted">{{object.type}} | {{object.attribute}} | {{object.card_level}}</span>
+            </div>
+            <div class="card-body">
+                {% include 'card_snippet.html' with object=object %}
+                <img src="{{ object.image.image_url }}" width=200 heigth=200 alt="{{object.name}} - image">
+            </div>
+        </div>
+        
     </div>
 </div>
+
 {% endblock content %}

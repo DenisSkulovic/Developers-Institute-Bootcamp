@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Offers - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<h1>Offers</h1>
+<div id="trading-list-top-buttons-wrapper">
+    <div id="trading-list-top-buttons-box">
+        <a href="{% url 'trading_create' 'Buy' %}" class="btn btn-primary">Add Buy Offer</a>
+        <a href="{% url 'trading_create' 'Sell' %}" class="btn btn-primary">Add Sell Offer</a>
+        <a href="{% url 'mainpage' %}" class="btn btn-primary">Back to Mainpage</a>
+    </div>
+</div>
+<div id="trading-list-wrapper" class="list-wrapper">
+    <div id="trading-list-box" clss="list-box">
+        {% for object in object_list %}
+
+            <div class="card mt-2 ml-4">
+                <div class="card-header text-left">
+                    <div class="text-left">
+                        <span class="font-weight-bold"><a href="{% url 'trading_detail' object.pk %}">{{object.card.name}}</a></span> &middot;
+                        <span class="text-muted">by {{object.user.username}} | {{object.date}}</span>
+                    </div>
+                    <div class="text-right">
+                        {% if object.user == user %}
+                        <a href="{% url 'trading_update' object.pk %}">Edit Offer</a> |
+                        <a href="{% url 'trading_delete' object.pk %}">Delete Offer</a>
+                        {% endif %}
+                    </div>
+                    <h3>Price: {{object.price}}</h3>
+                </div>
+                <div class="card-body">
+                    <img src="{{object.card.image.image_url_small}}" alt="{{object.card.name}} - image" width=168 heigth=246>
+                    
+                </div>
+                    <div class="card-footer text-center text-muted">
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

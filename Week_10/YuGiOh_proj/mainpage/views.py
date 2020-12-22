@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import View, ListView, DetailView
+from django.views.generic import View, ListView, DetailView, TemplateView
 from .models import Card
 
-def mainpage(request):
-    context = {}
-    return render(request, 'mainpage.html', context)
+class MainpageTemplateView(TemplateView):
+    template_name = "mainpage.html"
 
 class CardDetailView(DetailView):
     model = Card

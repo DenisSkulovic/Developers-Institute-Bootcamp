@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Forum - {{ block.super }}
+Reply - {{ block.super }}
 {% endblock title %}
 
 {% block content %}
-
-<div id="comment-create-wrapper">
-    <div id="comment-create-box">
+<div id="reply-create-wrapper">
+    <div id="reply-create-box">
         <form method="POST" action="">
             {% csrf_token %}
             {{form.as_p}}
-            <button class="form-control btn btn-success" type='submit'>Post Comment</button>
+            <button class="form-control btn btn-success" type='submit'>Post Reply</button>
         </form>
     </div>
 </div>

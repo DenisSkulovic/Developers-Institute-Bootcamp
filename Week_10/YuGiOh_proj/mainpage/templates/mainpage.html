@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>This is the mainpage</p>
+<div class="jumbotron">
+    <h1 class="display-4">YuGiOh Card Exchange Platform</h1>
 
-    <div>
-        <a href="{% url 'trading' %}" class='btn btn-primary'>Trading</a>
-        <a href="{% url 'comment_list' %}" class='btn btn-primary'>Forum</a>
-    </div>
+    <p class="lead"><a href="{% url 'trading_list' %}" class='btn btn-primary'>Trading</a></p>
+    <p class="lead"><a href="{% url 'comment_list' %}" class='btn btn-primary'>Forum</a></p>
+</div>
 
 {% endblock content %}

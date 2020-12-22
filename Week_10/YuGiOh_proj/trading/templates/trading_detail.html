@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="detail-wrapper">
+    <div class="detail-box">
+
+        <div class="card">
+            <div class="card-header">
+                <span class="font-weight-bold"><a href="{% url 'trading_detail' object.pk %}">{{object.card.name}}</a></span> &middot;
+                <span class="text-muted">{{object.type}} | {{object.attribute}} | {{object.card_level}}</span>
+            </div>
+            <div class="card-body">
+                <div class="card-body-image">
+                    <img src="{{object.card.image.image_url}}" width=421 height=614>
+                </div>
+                <div class="card-body-stats">
+                    <h3>Price: {{object.price}}</h3>
+                </div>
+            </div>
+            <div class="card-footer text-center text-muted">
+                <p><a class="btn btn-primary" href="{% url 'trading_list' %}">Back to Trading Page</a></p>
+                {% if object.user == user %}
+                    <p><a href="{% url 'trading_update' object.pk %}">Edit Offer</a></p>
+                    <p><a href="{% url 'trading_delete' object.pk %}">Delete Offer</a></p>
+                {% endif %}
+                {% if user.is_superuser %}
+                <p><a href="{% url 'trading_update' object.pk %}">Edit Offer as Admin</a></p>
+                <p><a href="{% url 'trading_delete' object.pk %}">Delete Offer as Admin</a></p>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

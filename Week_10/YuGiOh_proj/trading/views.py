@@ -1,157 +1,72 @@
+from ygoprodeck import YGOPro
 from django.shortcuts import render, reverse
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import (View, ListView, DetailView, 
                                   CreateView, UpdateView, DeleteView,
-                                  TemplateView,
-                                  )
-from ygoprodeck import YGOPro
+                                  TemplateView, )
 from mainpage.models import (Type, Race, Archetype, 
                              Cardset, Image, CardPrice, 
                              Attribute, Card)
-from account.models import Profile
+from db_functions import get_api_data, get_or_create, update_db
+from trading.models import Offer
 from django.core.exceptions import ObjectDoesNotExist
-from mainpage.db_functions import get_api_data, get_or_create, update_db
-from django.contrib.auth.decorators import login_required
-from trading.models import SellOffer, BuyOffer
 from django.core.paginator import Paginator
-from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth import get_user_model
 
-
-class Trading(TemplateView):
-    template_name = 'trading.html'
-
-
-
-@method_decorator(login_required, name='get')
-class TradingBuyDeleteView(DeleteView):
-    model = BuyOffer
-    template_name = 'trading_buy_delete.html'
-    success_url = reverse_lazy('trading_buy_list')
-
-@method_decorator(login_required, name='get')
-class TradingSellDeleteView(DeleteView):
-    model = SellOffer
-    template_name = 'trading_sell_delete.html'
-    success_url = reverse_lazy('trading_sell_list')
+User = get_user_model()
 
 
 
-
-@method_decorator(login_required, name='get')
-class TradingBuyUpdateView(UpdateView):
-    model = BuyOffer
-    template_name = 'trading_buy_update.html'
-    fields = ['card','price']
-    # make sure profile field is properly dealt with in views
+class TradingDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Offer
+    template_name = 'trading_delete.html'
+    success_url = reverse_lazy('trading_list')
     
-@method_decorator(login_required, name='get')
-class TradingSellUpdateView(UpdateView):
-    model = SellOffer
-    template_name = 'trading_sell_update.html'
-    fields = ['card','price']
-    # make sure profile field is properly dealt with in views
-
-
-
-
-class TradingBuyDetailView(DetailView):
-    model = BuyOffer
-    template_name = 'trading_buy_detail.html'
-    fields = '__all__'
-
-class TradingSellDetailView(DetailView):
-    model = SellOffer
-    template_name = 'trading_sell_detail.html'
-    fields = '__all__'
-
-
-
-
-class TradingBuyListView(ListView):
-    model = BuyOffer
-    template_name = 'trading_buy_list.html'
-    fields = '__all__'
-
-class TradingSellListView(ListView):
-    model = SellOffer
-    template_name = 'trading_sell_list.html'
-    fields = '__all__'
-    
-    
-    
-    
-@method_decorator(login_required, name='get')
-class TradingBuyCreateView(CreateView):
-    model = BuyOffer
-    template_name = 'trading_buy_create.html'
-    fields = ['card','price']
-    # make sure profile field is properly dealt with in views
-
-@method_decorator(login_required, name='get')
-class TradingSellCreateView(CreateView):
-    model = SellOffer
-    template_name = 'trading_sell_create.html'
-    fields = ['card','price']
-    # make sure profile field is properly dealt with in views
-
-
-
-
-# everything below is cringy garbage
-class SellOfferViewAll(View):
-    def get(self, request, page):
-        all_cards = SellOffer.objects.all()
-        if all_cards:
-            paginator = Paginator(all_cards, 10)
-            page_obj = paginator.get_page(page)
-            context = {
-                'page_obj': page_obj,
-            }
+    def test_func(self):
+        if self.request.user.id == int(self.kwargs['pk']):
+            return True
         else:
-            context = {'page_obj': None}
-        return render(request, 'trading_sell_all.html', context) 
+            return HttpResponse("<h1>You cannot delete other people's offers.</h1>")
 
 
-class BuyOfferViewAll(View):
-    def get(self, request, page):
-        all_cards = SellOffer.objects.all()
-        paginator = Paginator(all_cards, 10)
-        page_obj = paginator.get_page(page)
-        context = {
-            'page_obj': page_obj,
-        }
-        return render(request, 'trading_buy_all.html', context)
+
+class TradingUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Offer
+    template_name = 'trading_update.html'
+    fields = ['card','price']
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+    
+    def test_func(self):
+        if self.request.user.id == int(self.kwargs['pk']):
+            return True
+        else:
+            return HttpResponse("<h1>You cannot update other people's offers.</h1>")
+    
+
+
+
+class TradingDetailView(DetailView):
+    model = Offer
+    template_name = 'trading_detail.html'
+    fields = '__all__'
+
+
+class TradingListView(ListView):
+    model = Offer
+    template_name = 'trading_list.html'
+    fields = '__all__'   
     
     
-@method_decorator(login_required, name='get')  
-class SellOfferView(View):
-    def get(self, request, page):
-        profile = Profile.objects.get(user=request.user)
-        profile_cards = profile.cards
-        all_cards_for_sale = SellOffer.objects.all()
-        
-        view_cards = set(all_cards_for_sale).intersection(set(profile_cards))
-        
-        paginator = Paginator(list(view_cards), 10)
-        page_obj = paginator.get_page(page)
-        context = {
-            'page_obj': page_obj,
-        }
-        return render(request, 'trading_sell.html', context)
     
-    
-@method_decorator(login_required, name='get')
-class BuyOfferView(View):
-    def get(self, request, page):
-        profile = Profile.objects.get(user=request.user)
-        profile_cards = profile.cards
-        all_cards_for_buy = BuyOffer.objects.all()
-        
-        view_cards = set(all_cards_for_buy).intersection(set(profile_cards))
-        
-        paginator = Paginator(list(view_cards), 10)
-        page_obj = paginator.get_page(page)
-        context = {
-            'page_obj': page_obj,
-        }
-        return render(request, 'trading_buy.html', context)
+class TradingCreateView(LoginRequiredMixin, CreateView):
+    model = Offer
+    template_name = 'trading_create.html'
+    fields = ['card','price']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

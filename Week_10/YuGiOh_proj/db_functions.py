@@ -47,10 +47,10 @@ def update_db(data):
                                         set_rarity_code = cardset['set_rarity_code'],
                                         set_price = float(cardset['set_price'])) for cardset in card['card_sets']]
         if 'card_images' in card.keys():
-            card_images = [get_or_create(Image, 
-                                    api_id=image['id'],
-                                    image_url = image['image_url'],
-                                    image_url_small = image['image_url_small']) for image in card['card_images']]
+            entry['image'] = get_or_create(Image, 
+                                    api_id=card['card_images'][0]['id'],
+                                    image_url = card['card_images'][0]['image_url'],
+                                    image_url_small = card['card_images'][0]['image_url_small'])
         if 'card_prices' in card.keys():
             card_prices = [get_or_create(CardPrice, 
                                     cardmarket_price = float(price['cardmarket_price']),
@@ -61,5 +61,4 @@ def update_db(data):
         if not Card.objects.filter(api_id=card['id']):
             new_card = Card.objects.create(**entry)
             new_card.cardset_set = card_cardset
-            [new_card.image_set.add(image) for image in card_images]
             [new_card.cardprice_set.add(price) for price in card_prices]

@@ -2,12 +2,43 @@
 
 
 {% block content %}
-<div id="comment-detail-wrapper">
-    <div id="comment-detail-box">
-        <p>{{object.title}}</p>
-        <p>{{object.text}}</p>
-        <p>{{object.post_date}}</p>
-        <p>{{object.user}}</p>
+<div class="comment-wrapper">
+    <div class="comment-box mt-2 ml-4">
+
+        <div class="card">
+
+            <div class="card-header text-left">
+                <span class="font-weight-bold"><a href="{% url 'comment_detail' object.pk %}">{{object.title}}</a></span> &middot;
+                <span class="text-muted">by {{object.user}} | {{object.post_date}}</span>
+            </div>
+
+            <div class="card-body text-left">
+                <p>{{object.text}}</p>
+            </div>
+            <a href="{% url 'reply_create' object.pk %}" class="btn btn-success">Reply</a>
+            
+            {% ifequal user object.user %}
+            <div class="card-footer text-center text-muted">
+                <a href="{% url 'comment_update' object.pk %}" class="btn btn-primary">Edit Comment</a>
+                <a href="{% url 'comment_delete' object.pk %}" class="btn btn-primary">Delete Comment</a>
+            </div>
+            {% endifequal %}
+
+        </div>
+
+
+        {% if object.reply_set %}
+            {% for reply in object.reply_set.all %}
+                <div class="card mt-2 ml-4">
+                    <div class="card-header">
+                        <span class="text-muted">reply by {{object.user}} | {{object.post_date}}</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-left">{{reply.text}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

@@ -14,11 +14,26 @@ Forum - {{ block.super }}
 <div id="comment-detail-wrapper">
     <div id="comment-detail-box">
         {% for object in object_list %}
-        {% include 'comment_detail.html' with pk=object.pk %}
-        {% if object.user==user %}
-            <a href="{% url 'comment_update' object.pk %}" class="btn btn-primary">Edit Comment</a>
-            <a href="{% url 'comment_delete' object.pk %}" class="btn btn-primary">Delete Comment</a>
-        {% endif %}
+        <div class="card mt-2 ml-4">
+            <div class="card-header text-left">
+                <span class="font-weight-bold"><a href="{% url 'comment_detail' object.pk %}">{{object.title}}</a></span> &middot;
+                <span class="text-muted">by {{object.user}} | {{object.post_date}}</span>
+            </div>
+            <div class="card-body text-left">
+                <p>{{object.text}}</p>
+            </div>
+            <div class="card-footer">
+                <p>
+                    <a href="{% url 'comment_detail' object.pk %}">Replies: {{object.reply_set.all.count}}</a>
+                </p>
+                {% ifequal user object.user %}
+                <p>
+                    <a href="{% url 'comment_update' object.pk %}" class="btn btn-primary">Edit Comment</a> |
+                    <a href="{% url 'comment_delete' object.pk %}" class="btn btn-primary">Delete Comment</a>
+                </p>
+                {% endifequal %}
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>

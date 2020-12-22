@@ -6,16 +6,28 @@ Cards - {{ block.super }}
 
 {% block content %}
 <h1>Comments</h1>
-<div>
-    <a href="{% url 'mainpage' %}" class="btn btn-primary">Back to Mainpage</a>
+<div id="card-list-top-buttons-wrapper">
+    <div id="card-list-top-buttons-box">
+        <a href="{% url 'mainpage' %}" class="btn btn-primary">Back to Mainpage</a>
+    </div>
 </div>
 
-<div id="card-detail-wrapper">
-    <div id="card-detail-box">
+
+<div id="card-list-wrapper">
+    <div id="card-list-box">
         {% for object in object_list %}
-        {% include 'card_detail.html' with pk=object.pk %}
+        <div class="card">
+            <div class="card-header">
+                <span class="font-weight-bold"><a href="{% url 'card_detail' object.pk %}">{{object.name}}</a></span> &middot;
+                <span class="text-muted">{{object.type}} | {{object.attribute}} | {{object.card_level}}</span>
+            </div>
+            <div class="card-body">
+                <p>{{object.desc}}</p>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>
 
 {% endblock content %}
+

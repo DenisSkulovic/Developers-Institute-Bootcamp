@@ -1,6 +1,5 @@
 from django.contrib import admin
-from trading.models import SellOffer, BuyOffer
+from trading.models import Offer
 
 
-admin.site.register(SellOffer)
-admin.site.register(BuyOffer)
+admin.site.register(Offer)
